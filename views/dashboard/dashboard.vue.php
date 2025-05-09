@@ -34,7 +34,8 @@
       </thead>
       <tbody class="text-gray-700">
         <?php
-        $config=require('./config.php');
+        use Core\Database;
+        $config=require base_path('./config.php');
         // $connection= new Database($config['database']);
         // $id= $_GET['id'];
         // // dd(item: $id);
@@ -44,8 +45,7 @@
         //  $assistants= $connection;
 
         $connection= new Database($config['database']);
-        $clients=$connection->get('clients');
-        // dd($clients);
+        $clients=$connection->query('SELECT * FROM clients')->fetchAll();
         ?>
       <?php foreach($clients as $client){ ?>
     <tr>
